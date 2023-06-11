@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import styles from "../style";
 import { close, ensemble, menu } from "../assets";
 import { navLinks } from "../constants";
 
@@ -10,7 +10,9 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <nav className="w-full flex py-6 justify-between items-center navbar">
+    <div className={`${styles.paddingX} ${styles.flexCenter}`}>
+      <div className={`${styles.boxWidth}`}>
+      <nav className="w-full flex py-6 justify-between items-center navbar">
       <img src={ensemble} alt="ensemble" className=" imglogo w-[80px] h-[80px]" />
 
       <ul className="list-none sm:flex hidden justify-end items-center flex-1">
@@ -58,6 +60,9 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
+      </div>
+    </div>
+   
   );
 };
 

@@ -3,34 +3,22 @@ import {  Business, Clients, CTA, Footer, Navbar, Stats, Testimonials, Hero } fr
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import PasswordVault from "./screens/PasswordVault";
-const App = () => (
+import Homescreen from "./screens/Homesceen";
+import {BrowserRouter,Routes,Route} from "react-router-dom"
+const App = () => {
+ return(
+<BrowserRouter>
   <div className="bg-primary w-full overflow-hidden">
-    <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Navbar />
-      </div>
-    </div>
-
-    <div className={`bg-primary ${styles.flexStart}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Hero />
-      </div>
-    </div>
     
-    <div className={`bg-primary ${styles.paddingX} ${styles.flexCenter}`}>
-      <div className={`${styles.boxWidth}`}>
-        <Stats />
-        <Business />
-        <Testimonials />
-        <Clients />
-        <CTA />
-<Register/>
-<Login/>
-<PasswordVault/>
+    <Navbar />
+    <Routes>
+        <Route exact path="/" element={<Homescreen />} />
+        <Route path="/passwordVault" element={<PasswordVault />} />
+ </Routes>
         <Footer />
-      </div>
-    </div>
+      
   </div>
+  </BrowserRouter>
 );
-
+ }
 export default App;
