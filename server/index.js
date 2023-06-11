@@ -1,50 +1,39 @@
-// this is the file where the server gets started
 const dotenv = require("dotenv");
-
-
-
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 
-//middle ware 
-// i will use it for the function that if the user is not loggen in then on clicking the passowrd vault he shoul be redirected to home page
-
+dotenv.config(); // Load environment variables from .env file
 
 const PORT = 3001;
-
-const db =
-  "mongodb+srv://ishpreetshriya:ishpreetshriya@cluster0.lkxf8ok.mongodb.net/pwuc?retryWrites=true&w=majority";
+const db = process.env.DB_CONNECTION_STRING; // Use the connection string from .env
 
 mongoose
-  .connect(db,{
-useNewUrlParser:true,
-useCreateIndex:true,
-useUnifiedTopology:true,
-useFindAndModify:false
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   })
   .then(() => {
-    console.log(`connection successful`);
+    console.log("Connection successful");
   })
-  .catch((err) => console.log(`no connection`));
+  .catch((err) => console.log("Connection failed:", err));
 
 app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-
 app.get("/login", (req, res) => {
-    res.send("Hello login  World");
-  });
-  
-  app.get("/register", (req, res) => {
-    res.send("Hello register  World");
-  });
-  
-  app.get("/passwordvault", (req, res) => {
-    res.send("Hello register  World");
-  });
-  
+  res.send("Hello login World");
+});
+
+app.get("/register", (req, res) => {
+  res.send("Hello register World");
+});
+
+app.get("/passwordvault", (req, res) => {
+  res.send("Hello password vault World");
+});
+
 app.listen(PORT, () => {
   console.log("Server is running");
 });
